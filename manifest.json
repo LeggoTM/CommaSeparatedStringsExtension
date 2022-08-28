@@ -1,0 +1,9 @@
+{
+    "name": "Comma Separated Strings",
+    "version": "0.0.1",
+    "manifest_version": 3,
+    "description": "An extension to convert a list to comma separated strings enclosed in single quotes.",
+    "action": {
+        "default_popup": "./popup/popup.html"
+    }
+}
