@@ -3,13 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
     <label for="listInput">Paste the list here:</label>
-    <textarea name="listInput" id="listInput" cols="30" rows="10" placeholder="1. Eggs">
+    <textarea name="listInput" id="listInput" cols="30" rows="5"></textarea>
+    <button class="convertListButton glow-on-hover" id="convertList" type="button">Convert</button>
+    <textarea name="stringsOutput" id="stringsOutput" cols="30" rows="5"></textarea>
+    <button class="copyButton glow-on-hover" id="copyButton" type="button">Copy</button>
 
-    </textarea>
+    <script src="./convert.js"></script>
 </body>
 
 </html>
