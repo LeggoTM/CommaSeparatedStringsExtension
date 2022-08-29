@@ -5,7 +5,7 @@ convertButton.addEventListener('click', convertFunction);
 function convertFunction() {
     let inputText = document.getElementById('listInput').value;
 
-    const prefixRegex = new RegExp(/(^\S+\s+)|^/, 'gmi');
+    const prefixRegex = new RegExp(/(^\S+\.\s+)|^/, 'gmi');
     const suffixRegex = new RegExp(/(\.\n)|\n|\.|$/, 'gmi');
 
     let prefixResult = inputText.replace(prefixRegex, '\'');
