@@ -7,11 +7,42 @@
 </head>
 
 <body>
-    <label for="listInput">Paste the list here:</label>
-    <textarea name="listInput" id="listInput" cols="30" rows="5"></textarea>
-    <button class="convertListButton glow-on-hover" id="convertList" type="button">Convert</button>
-    <textarea name="stringsOutput" id="stringsOutput" cols="30" rows="5"></textarea>
-    <button class="copyButton glow-on-hover" id="copyButton" type="button">Copy</button>
+    <div class="tab-container">
+        
+        <div class="tabs">
+          <button class="tab active">TestSteps</button>
+          <button class="tab non-active">Nodes</button>
+          <button class="tab non-active">IncidentSteps</button>
+        </div>
+
+        <div class="tab-content">
+            <label for="listInput">Paste the list here:</label>
+            <textarea name="listInput" id="listInput" cols="30" rows="5"></textarea>
+            <button class="convertListButton" id="convertList" type="button">Convert</button>
+            <label for="stringsOutput">Formatted list:</label>
+            <textarea name="stringsOutput" id="stringsOutput" cols="30" rows="5"></textarea>
+            <button class="copyButton" id="copyButton" type="button">Copy</button>
+        </div>
+
+        <div class="tab-content hidden">
+            <label for="nodesInput">Paste the nodes here:</label>
+            <textarea name="nodesInput" id="nodesInput" cols="30" rows="5"></textarea>
+            <button class="convertNodesButton" id="convertNodes" type="button">Convert</button>
+            <label for="stringsOutput">Formatted nodes:</label>
+            <textarea name="stringsOutput" id="stringsOutput" cols="30" rows="5"></textarea>
+            <button class="copyButton" id="copyButton" type="button">Copy</button>
+        </div>
+
+        <div class="tab-content hidden">
+            <label for="stepsInput">Paste the steps here:</label>
+            <textarea name="stepsInput" id="stepsInput" cols="30" rows="5"></textarea>
+            <button class="convertStepsButton" id="convertSteps" type="button">Convert</button>
+            <label for="stringsOutput">Formatted steps:</label>
+            <textarea name="stringsOutput" id="stringsOutput" cols="30" rows="5"></textarea>
+            <button class="copyButton" id="copyButton" type="button">Copy</button>
+        </div>
+
+    </div>
 
     <script src="./convert.js"></script>
 </body>
