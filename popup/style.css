@@ -6,7 +6,7 @@ textarea {
 
 textarea {
   padding: 10px;
-  max-width: 100%;
+  width: 90%;
   line-height: 1.2;
   border-radius: 10px;
   border: 1px solid #ccc;
@@ -18,7 +18,7 @@ label {
   margin-bottom: 10px;
 }
 
-div > button {
+div.tab-content > button {
   align-items: center;
   background-color: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.1);

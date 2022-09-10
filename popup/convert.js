@@ -18,7 +18,7 @@ tabs.forEach((tab) => {
     tabContent.forEach((content) => {
       content.classList.add("hidden");
       if (content.dataset.id === tab.dataset.id) {
-          content.classList.remove("hidden");
+        content.classList.remove("hidden");
       }
     });
   });
@@ -29,32 +29,67 @@ tabContent.forEach((content) => {
   contentNo++;
 });
 
-
 // TestSteps Conversion
-let convertButton = document.getElementById('convertList');
-convertButton.addEventListener('click', convertFunction);
+const convertListButton = document.getElementById('convertList');
+const listInput = document.getElementById('listInput');
+const listOutput = document.getElementById('listOutput');
+const listPrefixRegex = new RegExp(/(^\d+\.\s)|^/, 'gmi');
+const listSuffixRegex = new RegExp(/(\.\n)|\n|\.|$/, 'gmi');
+convertListButton.addEventListener('click', function () {
+  convertFunction(listInput, listOutput, listPrefixRegex, listSuffixRegex);
+});
 
 
-function convertFunction() {
-    let inputText = document.getElementById('listInput').value;
+// Nodes Conversion
+const convertNodesButton = document.getElementById('convertNodes');
+const nodesInput = document.getElementById('nodesInput');
+const nodesOutput = document.getElementById('nodesOutput');
+const nodesPrefixRegex = new RegExp(/(^\d+\.\s)|^/, 'gmi');
+const nodesSuffixRegex = new RegExp(/(\.\n)|\n|\.|$/, 'gmi');
+convertListButton.addEventListener('click', function () {
+  convertFunction(nodesInput, nodesOutput, nodesPrefixRegex, nodesSuffixRegex);
+});
 
-    const prefixRegex = new RegExp(/(^\d+\.\s)|^/, 'gmi');
-    const suffixRegex = new RegExp(/(\.\n)|\n|\.|$/, 'gmi');
 
-    let prefixResult = inputText.replace(prefixRegex, '\'');
-    let suffixResult = prefixResult.replace(suffixRegex, '\',\n');
+// Steps Conversion
+const convertSteps = document.getElementById('convertSteps');
+const stepsInput = document.getElementById('stepsInput');
+const stepsOutput = document.getElementById('stepsOutput');
+const stepsPrefixRegex = new RegExp(/(^\d+\.\s)|^/, 'gmi');
+const stepsSuffixRegex = new RegExp(/(\.\n)|\n|\.|$/, 'gmi');
+convertListButton.addEventListener('click', function () {
+  convertFunction(stepsInput, stepsOutput, stepsPrefixRegex, stepsSuffixRegex);
+});
 
-    document.getElementById('stringsOutput').value = suffixResult;
+
+function convertFunction(listInput, listOutput, prefixRegex, suffixRegex) {
+  let inputText = listInput.value;
+  let prefixResult = inputText.replace(prefixRegex, '\'');
+  let suffixResult = prefixResult.replace(suffixRegex, '\',\n');
+  listOutput.value = suffixResult;
+  listOutput.select();
+  navigator.clipboard.writeText(listOutput.value);
 }
 
-let copyButton = document.getElementById('copyButton');
-copyButton.addEventListener('click', copyFunction);
 
-function copyFunction() {
-    let copyText = document.getElementById('stringsOutput');
-    copyText.select();
-    navigator.clipboard.writeText(copyText.value);
 
-    copyButton.innerHTML = 'Copied!';
-}
 
+
+
+
+
+
+
+
+
+
+// let copyButton = document.querySelector('.tab-content:not(.hidden) .copyButton');
+// copyButton.addEventListener('click', copyFunction(copyButton));
+
+// function copyFunction(copyButton) {
+//     let copyText = document.querySelector('.tab-content:not(.hidden) textarea.formattedText');
+//     copyText.select();
+//     navigator.clipboard.writeText(copyText.value);
+
+//     copyButton.innerHTML = 'Copied!';
+// }
