@@ -62,13 +62,13 @@ convertListButton.addEventListener('click', function () {
 });
 
 
-function convertFunction(listInput, listOutput, prefixRegex, suffixRegex) {
-  let inputText = listInput.value;
+function convertFunction(elementInput, elementOutput, prefixRegex, suffixRegex) {
+  let inputText = elementInput.value;
   let prefixResult = inputText.replace(prefixRegex, '\'');
   let suffixResult = prefixResult.replace(suffixRegex, '\',\n');
-  listOutput.value = suffixResult;
-  listOutput.select();
-  navigator.clipboard.writeText(listOutput.value);
+  elementOutput.value = suffixResult;
+  elementOutput.select();
+  navigator.clipboard.writeText(elementOutput.value);
 }
 
 
