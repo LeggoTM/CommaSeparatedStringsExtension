@@ -29,6 +29,22 @@ tabContent.forEach((content) => {
   contentNo++;
 });
 
+// Copy functionality
+const copyButtons = document.querySelectorAll('.copyButton');
+copyButtons.forEach((copyButton) => {
+  copyButton.addEventListener('click', function () {
+    copyFunction(copyButton);
+  })
+});
+
+function copyFunction(copyButton) {
+  let copyText = document.querySelector('.tab-content:not(.hidden) textarea.formattedText');
+  copyText.select();
+  navigator.clipboard.writeText(copyText.value);
+
+  copyButton.innerHTML = 'Copied!';
+}
+
 // TestSteps Conversion
 const convertListButton = document.getElementById('convertList');
 const listInput = document.getElementById('listInput');
@@ -46,18 +62,18 @@ const nodesInput = document.getElementById('nodesInput');
 const nodesOutput = document.getElementById('nodesOutput');
 const nodesPrefixRegex = new RegExp(/(^\d+\.\s)|^/, 'gmi');
 const nodesSuffixRegex = new RegExp(/(\.\n)|\n|\.|$/, 'gmi');
-convertListButton.addEventListener('click', function () {
+convertNodesButton.addEventListener('click', function () {
   convertFunction(nodesInput, nodesOutput, nodesPrefixRegex, nodesSuffixRegex);
 });
 
 
 // Steps Conversion
-const convertSteps = document.getElementById('convertSteps');
+const convertStepsButton = document.getElementById('convertSteps');
 const stepsInput = document.getElementById('stepsInput');
 const stepsOutput = document.getElementById('stepsOutput');
 const stepsPrefixRegex = new RegExp(/(^\d+\.\s)|^/, 'gmi');
 const stepsSuffixRegex = new RegExp(/(\.\n)|\n|\.|$/, 'gmi');
-convertListButton.addEventListener('click', function () {
+convertStepsButton.addEventListener('click', function () {
   convertFunction(stepsInput, stepsOutput, stepsPrefixRegex, stepsSuffixRegex);
 });
 
@@ -67,29 +83,4 @@ function convertFunction(elementInput, elementOutput, prefixRegex, suffixRegex) 
   let prefixResult = inputText.replace(prefixRegex, '\'');
   let suffixResult = prefixResult.replace(suffixRegex, '\',\n');
   elementOutput.value = suffixResult;
-  elementOutput.select();
-  navigator.clipboard.writeText(elementOutput.value);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-// let copyButton = document.querySelector('.tab-content:not(.hidden) .copyButton');
-// copyButton.addEventListener('click', copyFunction(copyButton));
-
-// function copyFunction(copyButton) {
-//     let copyText = document.querySelector('.tab-content:not(.hidden) textarea.formattedText');
-//     copyText.select();
-//     navigator.clipboard.writeText(copyText.value);
-
-//     copyButton.innerHTML = 'Copied!';
-// }
