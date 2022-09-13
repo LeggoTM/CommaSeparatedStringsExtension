@@ -51,8 +51,10 @@ const listInput = document.getElementById('listInput');
 const listOutput = document.getElementById('listOutput');
 const listPrefixRegex = new RegExp(/(^\d+\.\s)|^/, 'gmi');
 const listSuffixRegex = new RegExp(/(\.\n)|\n|\.|$/, 'gmi');
+const prefixReplaceValue = '\'';
+const suffixReplaceValue = '\',\n';
 convertListButton.addEventListener('click', function () {
-  convertFunction(listInput, listOutput, listPrefixRegex, listSuffixRegex);
+  convertFunction(listInput, listOutput, listPrefixRegex, listSuffixRegex, prefixReplaceValue, suffixReplaceValue);
 });
 
 
@@ -60,10 +62,10 @@ convertListButton.addEventListener('click', function () {
 const convertNodesButton = document.getElementById('convertNodes');
 const nodesInput = document.getElementById('nodesInput');
 const nodesOutput = document.getElementById('nodesOutput');
-const nodesPrefixRegex = new RegExp(/(^\d+\.\s)|^/, 'gmi');
-const nodesSuffixRegex = new RegExp(/(\.\n)|\n|\.|$/, 'gmi');
+const nodesPrefixRegex = new RegExp(/([^,]+,[^,]+),/, 'gmi');
+const nodesReplaceValue = '$1,\n';
 convertNodesButton.addEventListener('click', function () {
-  convertFunction(nodesInput, nodesOutput, nodesPrefixRegex, nodesSuffixRegex);
+  convertFunction(nodesInput, nodesOutput, nodesPrefixRegex);
 });
 
 
@@ -77,10 +79,17 @@ convertStepsButton.addEventListener('click', function () {
   convertFunction(stepsInput, stepsOutput, stepsPrefixRegex, stepsSuffixRegex);
 });
 
-
-function convertFunction(elementInput, elementOutput, prefixRegex, suffixRegex) {
-  let inputText = elementInput.value;
-  let prefixResult = inputText.replace(prefixRegex, '\'');
-  let suffixResult = prefixResult.replace(suffixRegex, '\',\n');
-  elementOutput.value = suffixResult;
+// Conversion functionality
+function convertFunction(elementInput, elementOutput, prefixRegex, suffixRegex = 'empty', prefixReplaceValue, suffixReplaceValue) {
+  if(suffixRegex === 'empty'){
+    let inputText = elementInput.value;
+    let prefixResult = inputText.replace(prefixRegex, prefixReplaceValue);
+    elementOutput.value = prefixResult;
+  }
+  else{
+    let inputText = elementInput.value;
+    let prefixResult = inputText.replace(prefixRegex, prefixReplaceValue);
+    let suffixResult = prefixResult.replace(suffixRegex, suffixReplaceValue);
+    elementOutput.value = suffixResult;
+  }
 }
