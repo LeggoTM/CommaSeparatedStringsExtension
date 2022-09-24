@@ -1,4 +1,4 @@
-//Tabs functionality taken from https://codepen.io/aburkalo/pen/vYRdOBV
+// Tabs functionality taken from https://codepen.io/aburkalo/pen/vYRdOBV
 const tabs = document.querySelectorAll(".tab");
 const tabContent = document.querySelectorAll(".tab-content");
 
@@ -54,7 +54,7 @@ const listSuffixRegex = new RegExp(/(\.\n)|\n|\.|$/, 'gmi');
 const prefixReplaceValue = '\'';
 const suffixReplaceValue = '\',\n';
 convertListButton.addEventListener('click', function () {
-  convertFunction(listInput, listOutput, listPrefixRegex, listSuffixRegex, prefixReplaceValue, suffixReplaceValue);
+  convertFunction(listInput, listOutput, listPrefixRegex, prefixReplaceValue, suffixReplaceValue, listSuffixRegex);
 });
 
 
@@ -62,10 +62,10 @@ convertListButton.addEventListener('click', function () {
 const convertNodesButton = document.getElementById('convertNodes');
 const nodesInput = document.getElementById('nodesInput');
 const nodesOutput = document.getElementById('nodesOutput');
-const nodesPrefixRegex = new RegExp(/([^,]+,[^,]+),/, 'gmi');
+const nodesPrefixRegex = new RegExp(/([^,]+,[^,]+),\s/, 'gmi');
 const nodesReplaceValue = '$1,\n';
 convertNodesButton.addEventListener('click', function () {
-  convertFunction(nodesInput, nodesOutput, nodesPrefixRegex);
+  convertFunction(nodesInput, nodesOutput, nodesPrefixRegex, nodesReplaceValue);
 });
 
 
@@ -73,20 +73,20 @@ convertNodesButton.addEventListener('click', function () {
 const convertStepsButton = document.getElementById('convertSteps');
 const stepsInput = document.getElementById('stepsInput');
 const stepsOutput = document.getElementById('stepsOutput');
-const stepsPrefixRegex = new RegExp(/(^\d+\.\s)|^/, 'gmi');
-const stepsSuffixRegex = new RegExp(/(\.\n)|\n|\.|$/, 'gmi');
+const stepsPrefixRegex = new RegExp(/^/, 'gmi');
+const stepsReplaceValue = '- ';
 convertStepsButton.addEventListener('click', function () {
-  convertFunction(stepsInput, stepsOutput, stepsPrefixRegex, stepsSuffixRegex);
+  convertFunction(stepsInput, stepsOutput, stepsPrefixRegex, stepsReplaceValue);
 });
 
 // Conversion functionality
-function convertFunction(elementInput, elementOutput, prefixRegex, suffixRegex = 'empty', prefixReplaceValue, suffixReplaceValue) {
-  if(suffixRegex === 'empty'){
+function convertFunction(elementInput, elementOutput, prefixRegex, prefixReplaceValue, suffixReplaceValue = 'empty', suffixRegex = 'empty') {
+  if (suffixRegex === 'empty') {
     let inputText = elementInput.value;
     let prefixResult = inputText.replace(prefixRegex, prefixReplaceValue);
     elementOutput.value = prefixResult;
   }
-  else{
+  else {
     let inputText = elementInput.value;
     let prefixResult = inputText.replace(prefixRegex, prefixReplaceValue);
     let suffixResult = prefixResult.replace(suffixRegex, suffixReplaceValue);
