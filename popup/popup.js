@@ -49,8 +49,8 @@ function copyFunction(copyButton) {
 const convertListButton = document.getElementById('convertList');
 const listInput = document.getElementById('listInput');
 const listOutput = document.getElementById('listOutput');
-const listPrefixRegex = new RegExp(/(^\s+")|^"/, 'gmi');
-const listSuffixRegex = new RegExp(/(",$\n)|("$)|"$\n/, 'gmi');
+const listPrefixRegex = new RegExp(/(^\s+("|'))|^("|')/, 'gmi');
+const listSuffixRegex = new RegExp(/(("|'),$\n)|("|'$)|("|')$\n/, 'gmi');
 const prefixReplaceValue = '- ';
 const suffixReplaceValue = '\n';
 convertListButton.addEventListener('click', function () {
