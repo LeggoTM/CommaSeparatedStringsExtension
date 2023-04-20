@@ -2,7 +2,7 @@
 An extension to convert comma separated strings enclosed in quotes to markdown bullet points.
 
 ## Preview
-<img src="https://github.com/LeggoTM/CommaSeparatedStringsExtension/blob/main/readme_assets/extension_preview.gif" width="60%" height="60%"/>
+<img src="https://github.com/LeggoTM/CommaSeparatedStringsExtension/blob/main/readme_assets/extension-gif.gif.gif" width="60%" height="60%"/>
 
 ## Installation
 - Download the latest `CommaSeparatedStringsExtension.zip` file from the [Github release page](https://github.com/LeggoTM/CommaSeparatedStringsExtension/releases).
